@@ -60,9 +60,21 @@ export function CaseStudy() {
         </div>
 
         {/* Title */}
-        <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-[#111] font-fraunces">
-          {study.title}
-        </h1>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-[#111] font-fraunces">
+            {study.title}
+          </h1>
+          {isNotespace && (
+            <a
+              href="https://notespace-iota.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-[13px] font-medium text-white bg-[#f97316] hover:bg-[#ea580c] px-4 py-2 rounded-full transition-all font-geist self-start"
+            >
+              Visit live site ↗
+            </a>
+          )}
+        </div>
 
         {/* Metadata Bar */}
         <div className="flex flex-wrap gap-x-6 gap-y-2 text-[13px] text-[#888] font-geist border-b border-[#f0f0f0] pb-6">

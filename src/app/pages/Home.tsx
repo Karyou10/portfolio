@@ -12,7 +12,7 @@ export function Home() {
   const contactLinks = [
     { label: "Email", value: "momohfayd@gmail.com", href: "mailto:momohfayd@gmail.com" },
     { label: "LinkedIn", value: "linkedin.com/in/fayd-momoh", href: "https://www.linkedin.com/in/fayd-momoh-970976273?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
-    { label: "Behance", value: "behance.net/fayd", href: "#" },
+    { label: "Behance", value: "behance.net/4fb42c93", href: "https://www.behance.net/4fb42c93" },
   ];
 
   return (
