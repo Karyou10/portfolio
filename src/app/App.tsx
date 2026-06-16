@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router";
+import { useEffect } from "react";
 import { Nav } from "./components/Nav";
 import { PageTransition } from "./components/PageTransition";
 import { Home } from "./pages/Home";
@@ -7,9 +8,20 @@ import { Work } from "./pages/Work";
 import { CaseStudy } from "./pages/CaseStudy";
 import { DottedGlowBackground } from "@/components/ui/dotted-glow-background";
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <div className="bg-white min-h-screen relative select-none overflow-x-hidden flex flex-col justify-between">
         <div className="relative z-10 w-full flex-1">
           <Nav />
