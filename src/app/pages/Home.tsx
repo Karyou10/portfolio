@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import { useEffect } from "react";
 import avatarImg from "../../assets/avatar.jpg";
-import dashboardImg from "../../assets/dashboard_mockup.png";
+import dashboardImg from "../../assets/dashboard_mockup.gif";
 import resumePdf from "../../assets/Mohammed Fayd's Resume_.pdf";
 import { Footer } from "../components/Footer";
 
