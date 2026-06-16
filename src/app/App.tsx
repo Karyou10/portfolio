@@ -12,7 +12,12 @@ function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // Ensure we scroll to top instantly after the page transition starts
+    setTimeout(() => {
+      document.documentElement.style.scrollBehavior = 'auto';
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      document.documentElement.style.scrollBehavior = 'smooth';
+    }, 10);
   }, [pathname]);
 
   return null;
