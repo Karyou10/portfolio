@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { useEffect } from "react";
 import avatarImg from "../../assets/avatar.jpg";
 import dashboardImg from "../../assets/dashboard_mockup.png";
+import resumePdf from "../../assets/Mohammed Fayd's Resume_.pdf";
 import { Footer } from "../components/Footer";
 
 export function Home() {
@@ -80,8 +81,8 @@ export function Home() {
             <div className="grid grid-cols-[100px_1fr] items-center text-[15px] font-geist">
               <span className="text-[#888] font-normal">Resume</span>
               <a
-                href="#"
-                download
+                href={resumePdf}
+                download="Fayd_Momoh_Resume.pdf"
                 className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#111] bg-[#f5f5f5] hover:bg-[#e8e8e8] px-4 py-1.5 rounded-full transition-all justify-self-start"
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
