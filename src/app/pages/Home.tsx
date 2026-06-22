@@ -45,7 +45,7 @@ export function Home() {
           {/* Bio copy — shortened to 2 paragraphs */}
           <div className="space-y-5 text-[#555] leading-[1.75] text-[16px] font-normal font-newsreader">
             <p>
-              Product Designer with 2+ years of experience across mobile, web, and internal tools — shaping experiences in health-tech, logistics, education, and productivity platforms.
+              Product Designer with 3+ years of experience across mobile, web, and internal tools — shaping experiences in health-tech, logistics, education, and productivity platforms.
             </p>
             <p>
               I've designed note-taking platforms at{" "}

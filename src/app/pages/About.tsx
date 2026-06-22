@@ -58,7 +58,7 @@ export function About() {
           {/* Bio */}
           <div className="space-y-5 text-[#555] leading-[1.75] text-[16px] font-normal font-newsreader">
             <p>
-              I'm a Product Designer based in Lagos, Nigeria. Over the past 2 years, I've worked across health-tech, logistics, and community platforms to build interfaces that feel clear, useful, and built with structure.
+              I'm a Product Designer based in Lagos, Nigeria. Over the past 3 years, I've worked across health-tech, logistics, and community platforms to build interfaces that feel clear, useful, and built with structure.
             </p>
             <p>
               I believe that good design is structure first. I spend my time understanding the core user problem, mapping out information architecture, and collaborating closely with engineering and product partners to bring focused designs to life.
