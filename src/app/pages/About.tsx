@@ -1,12 +1,82 @@
 import { Link } from "react-router";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import avatarImg from "../../assets/avatar.jpg";
 import { Footer } from "../components/Footer";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function About() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     document.title = "About — Fayd Momoh";
   }, []);
+
+  useGSAP(() => {
+    const tl = gsap.timeline({ defaults: { ease: "power3.out", duration: 0.8 } });
+
+    tl.from(".animate-profile", {
+      opacity: 0,
+      y: 20,
+    });
+
+    tl.from(".animate-bio p", {
+      opacity: 0,
+      y: 20,
+      stagger: 0.1,
+    }, "-=0.5");
+
+    gsap.from(".animate-exp", {
+      opacity: 0,
+      y: 30,
+      duration: 0.8,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".animate-exp-trigger",
+        start: "top 90%",
+        toggleActions: "play none none none",
+      }
+    });
+
+    gsap.from(".animate-tools-skills", {
+      opacity: 0,
+      y: 30,
+      duration: 0.8,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".animate-tools-skills-trigger",
+        start: "top 90%",
+        toggleActions: "play none none none",
+      }
+    });
+
+    gsap.from(".animate-how", {
+      opacity: 0,
+      y: 30,
+      duration: 0.8,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".animate-how-trigger",
+        start: "top 90%",
+        toggleActions: "play none none none",
+      }
+    });
+
+    gsap.from(".animate-exploring", {
+      opacity: 0,
+      y: 30,
+      duration: 0.8,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".animate-exploring-trigger",
+        start: "top 95%",
+        toggleActions: "play none none none",
+      }
+    });
+  }, { scope: containerRef });
 
   const experience = [
     { role: "Product Designer", company: "Notespace", year: "2026" },
@@ -34,12 +104,12 @@ export function About() {
   ];
 
   return (
-    <div className="w-full max-w-[1280px] mx-auto px-6 md:px-16 lg:px-24 pt-28 pb-16 min-h-screen flex flex-col justify-between font-geist">
+    <div ref={containerRef} className="w-full max-w-[1280px] mx-auto px-6 md:px-16 lg:px-24 pt-28 pb-16 min-h-screen flex flex-col justify-between font-geist">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
         {/* Left Column: Story */}
         <div className="flex flex-col space-y-8 max-w-xl">
           {/* Photo + Name */}
-          <div className="flex items-start gap-5">
+          <div className="flex items-start gap-5 animate-profile">
             <img
               src={avatarImg}
               alt="Fayd Momoh"
@@ -56,7 +126,7 @@ export function About() {
           </div>
 
           {/* Bio */}
-          <div className="space-y-5 text-[#555] leading-[1.75] text-[16px] font-normal font-newsreader">
+          <div className="space-y-5 text-[#555] leading-[1.75] text-[16px] font-normal font-newsreader animate-bio">
             <p>
               I'm a Product Designer based in Lagos, Nigeria. Over the past 3 years, I've worked across health-tech, logistics, and community platforms to build interfaces that feel clear, useful, and built with structure.
             </p>
@@ -79,7 +149,7 @@ export function About() {
           </div>
 
           {/* Experience Section */}
-          <div className="space-y-4 pt-2">
+          <div className="space-y-4 pt-2 animate-exp-trigger animate-exp">
             <h3 className="text-[12px] font-bold text-[#888] tracking-widest uppercase font-geist">
               Experience
             </h3>
@@ -99,7 +169,7 @@ export function About() {
 
         {/* Right Column: Tools, Skills & How I Work */}
         <div className="w-full space-y-10 lg:pl-12">
-          <div className="grid grid-cols-2 gap-8">
+          <div className="grid grid-cols-2 gap-8 animate-tools-skills-trigger animate-tools-skills">
             {/* Tools */}
             <div className="space-y-4">
               <h3 className="text-[12px] font-bold text-[#888] tracking-widest uppercase font-geist">
@@ -126,7 +196,7 @@ export function About() {
           </div>
 
           {/* How I Work */}
-          <div className="space-y-4">
+          <div className="space-y-4 animate-how-trigger animate-how">
             <h3 className="text-[12px] font-bold text-[#888] tracking-widest uppercase font-geist">
               How I Work
             </h3>
@@ -141,7 +211,7 @@ export function About() {
           </div>
 
           {/* Currently Exploring */}
-          <div className="space-y-4">
+          <div className="space-y-4 animate-exploring-trigger animate-exploring">
             <h3 className="text-[12px] font-bold text-[#888] tracking-widest uppercase font-geist">
               Currently Exploring
             </h3>

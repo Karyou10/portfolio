@@ -1,14 +1,35 @@
 import { Link } from "react-router";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import avatarImg from "../../assets/avatar.jpg";
 import dashboardImg from "../../assets/dashboard_mockup.gif";
 import resumePdf from "../../assets/Mohammed Fayd's Resume_.pdf";
 import { Footer } from "../components/Footer";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
 
 export function Home() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     document.title = "Fayd Momoh — Product Designer";
   }, []);
+
+  useGSAP(() => {
+    const tl = gsap.timeline({ defaults: { ease: "power3.out", duration: 0.8 } });
+
+    tl.from(".animate-fade-in", {
+      opacity: 0,
+      y: 20,
+      stagger: 0.12,
+    });
+
+    tl.from(".animate-showcase", {
+      opacity: 0,
+      y: 30,
+      scale: 0.98,
+      duration: 1,
+    }, "-=0.6");
+  }, { scope: containerRef });
 
   const contactLinks = [
     { label: "Email", value: "momohfayd@gmail.com", href: "mailto:momohfayd@gmail.com" },
@@ -17,12 +38,12 @@ export function Home() {
   ];
 
   return (
-    <div className="w-full max-w-[1280px] mx-auto px-6 md:px-16 lg:px-24 pt-28 pb-16 min-h-screen flex flex-col justify-between font-geist">
+    <div ref={containerRef} className="w-full max-w-[1280px] mx-auto px-6 md:px-16 lg:px-24 pt-28 pb-16 min-h-screen flex flex-col justify-between font-geist">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
         {/* Left Column: Heading, Bio, Contacts */}
         <div className="flex flex-col space-y-8 max-w-xl">
           {/* Availability Indicator */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 animate-fade-in">
             <span className="relative flex h-2.5 w-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
@@ -33,7 +54,7 @@ export function Home() {
           </div>
 
           {/* Headline */}
-          <div className="space-y-1">
+          <div className="space-y-1 animate-fade-in">
             <h1 className="text-4xl font-semibold tracking-tight text-[#111] font-fraunces">
               Hi, I'm Fayd Momoh
             </h1>
@@ -43,7 +64,7 @@ export function Home() {
           </div>
 
           {/* Bio copy — shortened to 2 paragraphs */}
-          <div className="space-y-5 text-[#555] leading-[1.75] text-[16px] font-normal font-newsreader">
+          <div className="space-y-5 text-[#555] leading-[1.75] text-[16px] font-normal font-newsreader animate-fade-in">
             <p>
               Product Designer with 3+ years of experience across mobile, web, and internal tools — shaping experiences in health-tech, logistics, education, and productivity platforms.
             </p>
@@ -65,7 +86,7 @@ export function Home() {
           </div>
 
           {/* Contact grid */}
-          <div className="pt-4 border-t border-[#f0f0f0] space-y-3">
+          <div className="pt-4 border-t border-[#f0f0f0] space-y-3 animate-fade-in">
             {contactLinks.map((link) => (
               <div key={link.label} className="grid grid-cols-[100px_1fr] items-center text-[15px] font-geist">
                 <span className="text-[#888] font-normal">{link.label}</span>
@@ -97,7 +118,7 @@ export function Home() {
         </div>
 
         {/* Right Column: Visual Showcase */}
-        <div className="w-full flex justify-center lg:justify-end">
+        <div className="w-full flex justify-center lg:justify-end animate-showcase">
           <div className="w-full bg-[#f3f5f8] rounded-[24px] p-6 sm:p-8 flex items-center justify-center transition-all duration-300 hover:shadow-sm">
             <div className="w-full bg-white rounded-xl shadow-xs overflow-hidden border border-neutral-100/50">
               <img

@@ -1,14 +1,58 @@
 import { Link } from "react-router";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import napsImg from "../../assets/Hsaa.jpeg";
 import sparkImg from "../../assets/Spark preview.png";
 import notespaceImg from "../../assets/Mockup for Notespace.png";
 import { Footer } from "../components/Footer";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function Work() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     document.title = "Work — Fayd Momoh";
   }, []);
+
+  useGSAP(() => {
+    const tl = gsap.timeline({ defaults: { ease: "power3.out", duration: 0.8 } });
+
+    tl.from(".animate-header", {
+      opacity: 0,
+      y: 20,
+      stagger: 0.1,
+    });
+
+    const cards = gsap.utils.toArray<HTMLElement>(".animate-card");
+    cards.forEach((card) => {
+      gsap.from(card, {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: card,
+          start: "top 90%",
+          toggleActions: "play none none none",
+        }
+      });
+    });
+
+    gsap.from(".animate-cta", {
+      opacity: 0,
+      y: 30,
+      duration: 0.8,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".animate-cta",
+        start: "top 95%",
+        toggleActions: "play none none none",
+      }
+    });
+  }, { scope: containerRef });
 
   const caseStudies = [
     {
@@ -44,10 +88,10 @@ export function Work() {
   ];
 
   return (
-    <div className="w-full max-w-[1280px] mx-auto px-6 md:px-16 lg:px-24 pt-28 pb-16 min-h-screen flex flex-col justify-between font-geist">
+    <div ref={containerRef} className="w-full max-w-[1280px] mx-auto px-6 md:px-16 lg:px-24 pt-28 pb-16 min-h-screen flex flex-col justify-between font-geist">
       <div className="w-full max-w-3xl mx-auto space-y-10">
         {/* Back Link */}
-        <div>
+        <div className="animate-header">
           <Link
             to="/"
             className="inline-flex items-center gap-1 text-[13px] font-medium text-[#666] bg-[#f5f5f5] hover:bg-[#e8e8e8] hover:text-[#111] px-4 py-1.5 rounded-full transition-all font-geist"
@@ -57,13 +101,13 @@ export function Work() {
         </div>
 
         {/* Intro — confident, no "a few" */}
-        <p className="text-[18px] text-[#555] leading-[1.75] font-newsreader">
+        <p className="text-[18px] text-[#555] leading-[1.75] font-newsreader animate-header">
           Selected projects showcasing product thinking, systems design, and user-centered problem solving across health-tech, logistics, and education.
         </p>
 
         {/* Section Title */}
         <div className="pt-4 space-y-6">
-          <h2 className="text-xl font-semibold text-[#111] tracking-tight font-fraunces">Case Studies</h2>
+          <h2 className="text-xl font-semibold text-[#111] tracking-tight font-fraunces animate-header">Case Studies</h2>
 
           {/* List of Case Studies — clickable cards */}
           <div className="space-y-6">
@@ -71,7 +115,7 @@ export function Work() {
               <Link
                 key={project.id}
                 to={`/work/${project.id}`}
-                className="group flex flex-col md:flex-row bg-[#f3f5f8] rounded-[24px] overflow-hidden p-6 gap-6 md:gap-8 items-stretch transition-all duration-300 hover:shadow-md border border-transparent hover:border-neutral-200 cursor-pointer no-underline hover:scale-[1.01]"
+                className="group flex flex-col md:flex-row bg-[#f3f5f8] rounded-[24px] overflow-hidden p-6 gap-6 md:gap-8 items-stretch transition-all duration-300 hover:shadow-md border border-transparent hover:border-neutral-200 cursor-pointer no-underline hover:scale-[1.01] animate-card"
               >
                 {/* Left side: Project Image */}
                 <div className="relative w-full md:w-[40%] bg-neutral-200 rounded-xl overflow-hidden min-h-[220px] md:min-h-0 shrink-0 border border-neutral-100/40">
@@ -127,7 +171,7 @@ export function Work() {
         </div>
 
         {/* Bottom CTA — replaces the "adding more" note */}
-        <div className="pt-8 space-y-4">
+        <div className="pt-8 space-y-4 animate-cta">
           <div className="bg-[#f9f9f9] rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div>
               <p className="text-[15px] text-[#333] font-medium font-geist">
