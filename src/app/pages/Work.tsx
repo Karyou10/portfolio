@@ -63,7 +63,7 @@ export function Work() {
       role: "Product Designer",
       timeline: "4 months",
       team: "1 Engineer, 1 PM",
-      tags: ["Mobile App", "Logistics & Routing", "Driver Experience", "User Flows"],
+      tags: ["Mobile App", "Logistics & Routing", "User Flows"],
     },
     {
       id: "notespace",
@@ -77,8 +77,8 @@ export function Work() {
     },
     {
       id: "naps",
-      title: "Designing a responsive digital workspace and community platform for university students.",
-      description: "Streamlined student portal registrations, department forums, resource archives, and peer mentoring flows for 10,000+ members — reducing onboarding time by 40%.",
+      title: "Designing a student platform replacing 4+ informal channels for an entire university department.",
+      description: "Helping students find resources and mentors without relying on scattered WhatsApp groups.",
       image: napsImg,
       role: "Product Designer",
       timeline: "8 months",

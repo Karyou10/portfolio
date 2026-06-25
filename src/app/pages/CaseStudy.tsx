@@ -1,5 +1,29 @@
 import { useParams, Link } from "react-router";
 import { Footer } from "../components/Footer";
+import { motion } from "motion/react";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 80,
+      damping: 20
+    }
+  }
+};
 import sparkCaseStudyImg from "../../assets/spark_case_study.png";
 import sparkImg from "../../assets/Spark First image.png";
 import sparkVideo from "../../assets/Spark Deliveries (Case study) -- Behance_2.mp4";
@@ -8,11 +32,13 @@ import notespaceHeroImg from "../../assets/notespace_hero.png";
 import notespaceAppImg from "../../assets/notespace_app.png";
 import notespacePreviewImg from "../../assets/Mockup for Notespace.png";
 import napsPreviewImg from "../../assets/Hsaa.jpeg";
+import definingSolutionGif from "../../assets/Defining the solution.gif";
+import beforeAfterImg from "../../assets/before&After.png";
 
 const caseStudyData: Record<string, { title: string; subtitle: string; role: string; timeline: string; team: string; }> = {
   naps: {
-    title: "NAPS Student Hub",
-    subtitle: "Designing a responsive digital workspace and community platform for university students.",
+    title: "Designed a department student hub covering 7 core flows — from onboarding to mentorship.",
+    subtitle: "",
     role: "Product Designer",
     timeline: "8 months",
     team: "3 Engineers, 2 PM",
@@ -48,8 +74,8 @@ const allCaseStudies = [
   },
   {
     id: "naps",
-    title: "NAPS Student Hub",
-    description: "Designing a responsive digital workspace and community platform for university students.",
+    title: "Designing a student platform replacing 4+ informal channels for an entire university department.",
+    description: "Helping students find resources and mentors without relying on scattered WhatsApp groups.",
     image: napsPreviewImg,
   },
 ];
@@ -123,6 +149,7 @@ export function CaseStudy() {
 
   const isSpark = id === "spark";
   const isNotespace = id === "notespace";
+  const isNaps = id === "naps";
 
   return (
     <div className="w-full max-w-[1280px] mx-auto px-6 md:px-16 lg:px-24 pt-28 pb-16 min-h-screen flex flex-col justify-between font-geist">
@@ -344,9 +371,185 @@ export function CaseStudy() {
         )}
 
         {/* ═══════════════════════════════════════════════════
-            NAPS / OTHER CASE STUDIES — Coming Soon
+            NAPS CASE STUDY
             ═══════════════════════════════════════════════════ */}
-        {!isSpark && !isNotespace && (
+        {isNaps && (
+          <div className="space-y-20 mt-4">
+            {/* ── Hero Image ── */}
+            <img
+              src={napsPreviewImg}
+              alt="NAPS Student Hub mockup on laptop"
+              className="w-full rounded-[24px] border border-neutral-100 shadow-sm"
+            />
+
+            {/* ── THE GAP ── */}
+            <div className="space-y-6">
+              <SectionLabel color="#2563eb">The Gap</SectionLabel>
+              <div className="space-y-4 text-[#555] leading-[1.8] text-[16px] font-newsreader">
+                <p>
+                  The department student portal and platform.
+                </p>
+                <p>
+                  Resources access is shared over WhatsApp, files lost, confusing RSVP system. Students and admins disconnected with no standard infrastructure.
+                </p>
+                <p>
+                  My task: design a responsive web platform that resolves resource sharing, forums, and events with streamlined, structured and reliable interactions.
+                </p>
+              </div>
+
+              {/* Before & After Image Asset */}
+              <div className="pt-4">
+                <img
+                  src={beforeAfterImg}
+                  alt="Before and After NAPS"
+                  className="w-full rounded-[24px] border border-neutral-100 shadow-sm"
+                />
+              </div>
+            </div>
+
+            {/* ── DESIGN & DECISION ── */}
+            <div className="space-y-6">
+              <SectionLabel color="#2563eb">Design & Decision</SectionLabel>
+              <p className="text-[#555] leading-[1.8] text-[16px] font-newsreader">
+                I started with a layout to structure the UI. For each feature, I mapped the user steps a student would take — from login to dashboard, to resource upload to confirmation, mentorship application to approval.
+              </p>
+              <div className="space-y-5">
+                {[
+                  {
+                    title: "1. Registration pillar — CRM for admin",
+                    desc: "physical image/approval automated verification process, no physical checks, not manual. Only verified department students can access the platform."
+                  },
+                  {
+                    title: "2. Resource Library structure",
+                    desc: "folders organized by level (100 - 400) mirrors how students already study. This zeroed down their materials search learning curve."
+                  },
+                  {
+                    title: "3. Forum design",
+                    desc: "real-time messaging with departments, announcements, and general discussions. Familiar UX layout like WhatsApp and Discord to keep engagement high, but styled and structured to avoid noise."
+                  },
+                  {
+                    title: "4. Mentorship pill",
+                    desc: "'Ready to be a Mentor' and 'Ready to be a Mentee' are separate flows with distinct paths, with separate forms and confirmation pages. Prevented confusion between the two journeys from the start."
+                  },
+                ].map((item) => (
+                  <div key={item.title} className="flex gap-4 items-start">
+                    <span className="text-blue-500 mt-1 shrink-0 text-lg">◆</span>
+                    <div>
+                      <span className="text-[#111] font-medium font-geist">{item.title}</span>
+                      <p className="text-[#555] text-[15px] font-newsreader leading-relaxed mt-1">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              <p className="text-[#555] leading-[1.8] text-[16px] font-newsreader pt-2">
+                Detailed screens was built across mobile, tablet and desktop size — to account for usage on different devices and sizes.
+              </p>
+
+              {/* Defining the solution GIF asset replacement */}
+              <div className="space-y-3 pt-4">
+                <img
+                  src={definingSolutionGif}
+                  alt="Defining the solution layout preview"
+                  className="w-full rounded-[24px] border border-neutral-100 shadow-sm"
+                />
+                <p className="text-[12px] text-[#aaa] font-geist text-center italic">
+                  Defining the solution layout process and screen transitions.
+                </p>
+              </div>
+            </div>
+
+            {/* ── FIELD RESEARCH ── */}
+            <div className="space-y-6">
+              <SectionLabel color="#2563eb">Field Research</SectionLabel>
+              <p className="text-[#555] leading-[1.8] text-[16px] font-newsreader">
+                I interviewed a focus team of two — vice president of the set, and lead frontend developer.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {[
+                  { stat: "3 rules", label: "to create a balance between design language and dev limits." },
+                  { stat: "2 states", label: "designing for states like empty and populated statuses — reduced the missing gaps." },
+                  { stat: "1 test", label: "testing dynamic component sizes and variations (competing text wrapping etc)" },
+                ].map((item) => (
+                  <div key={item.stat} className="bg-[#f0f9ff] rounded-xl p-5 text-center space-y-2 border border-sky-100">
+                    <span className="text-2xl font-bold text-[#2563eb] font-fraunces">{item.stat}</span>
+                    <p className="text-[13px] text-[#666] font-geist">{item.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* ── OUTCOME ── */}
+            <div className="space-y-6">
+              <SectionLabel color="#2563eb">Outcome</SectionLabel>
+              <div className="space-y-5">
+                {[
+                  "NAPS replaced the informal media layout with a centralized platform.",
+                  "Students gained structure of access to resources, mentorship, and events for the first time.",
+                  "The mentorship program went from manual and unorganized to a full application → session → communication → feedback loop.",
+                  "The resource library reduced admin approval workload, resulting in faster and smoother material uploads.",
+                  "Events moved from last-minute announcements to a structured RSVP system with calendar integration and details section."
+                ].map((text, idx) => (
+                  <div key={idx} className="flex gap-4 items-start">
+                    <span className="text-blue-500 mt-1 shrink-0 text-lg">◆</span>
+                    <p className="text-[#555] text-[16px] font-newsreader leading-relaxed">{text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* ── REFLECTION ── */}
+            <div className="space-y-6">
+              <div className="space-y-2">
+                <SectionLabel color="#2563eb">Reflection</SectionLabel>
+                <h3 className="text-2xl font-semibold text-[#111] font-fraunces">Guiding Insights</h3>
+                <p className="text-[16px] text-neutral-500 font-newsreader leading-relaxed">
+                  Qualitative insights over quantitative stats. Here's what guided the thinking behind the experience.
+                </p>
+              </div>
+
+              <motion.div 
+                className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+              >
+                {[
+                  {
+                    number: "01",
+                    title: "Friction is a design tool",
+                    description: "Approval gates protected the community. I learned to judge steps by purpose, not by count."
+                  },
+                  {
+                    number: "02",
+                    title: "Design the edge cases",
+                    description: "Error states and timeouts aren't afterthoughts — for users on unstable internet, they're the main experience."
+                  },
+                  {
+                    number: "03",
+                    title: "Discovery needs a flow too",
+                    description: "A guided first-session walkthrough would have surfaced mentorship and forum faster — the platform's two highest-value features."
+                  }
+                ].map((insight) => (
+                  <motion.div 
+                    key={insight.number} 
+                    variants={itemVariants}
+                    className="bg-[#f8fafc] border border-neutral-100/80 rounded-2xl p-6 md:p-8 flex flex-col space-y-4 h-full"
+                  >
+                    <span className="text-[12px] font-bold text-blue-500 font-geist-mono tracking-wider uppercase">{insight.number}</span>
+                    <div className="space-y-2">
+                      <h4 className="text-[18px] font-semibold text-[#111] font-fraunces leading-tight">{insight.title}</h4>
+                      <p className="text-neutral-500 text-[14px] leading-relaxed font-newsreader">{insight.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </div>
+        )}
+
+        {!isSpark && !isNotespace && !isNaps && (
           <div className="bg-[#f3f5f8] rounded-[24px] p-12 flex items-center justify-center min-h-[320px]">
             <div className="text-center space-y-4">
               <div className="text-5xl">🚧</div>
