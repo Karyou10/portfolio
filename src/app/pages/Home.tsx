@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import { useEffect, useRef } from "react";
 import avatarImg from "../../assets/avatar.jpg";
 import dashboardImg from "../../assets/dashboard_mockup.gif";
-import resumePdf from "../../assets/Mohammed Fayd's Resume_.pdf";
+import resumePdf from "../../assets/Mohammed_Fayd_Momoh_Resume.pdf";
 import { Footer } from "../components/Footer";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
